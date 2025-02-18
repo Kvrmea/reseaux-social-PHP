@@ -1,0 +1,133 @@
+/* index.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px; /* Sidebar gauche, contenu principal, sidebar droit */
+    gap: 20px;
+    padding: 20px;
+}
+
+.sidebar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.sidebar .logo img {
+    width: 50px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #3498db;
+    font-size: 16px;
+}
+
+.main-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-content .post-form {
+    margin-bottom: 20px;
+}
+
+.main-content .post-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.main-content .feed {
+    margin-top: 20px;
+}
+
+.main-content .post {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.main-content .post-header {
+    display: flex;
+    align-items: center;
+}
+
+.main-content .post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.main-content .post-header .username {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.main-content .post-body {
+    margin-top: 10px;
+}
+
+.main-content .post-footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-content .post-footer button {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.right-sidebar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.right-sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.right-sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.right-sidebar ul li {
+    margin: 10px 0;
+}
+
+.right-sidebar ul li a {
+    text-decoration: none;
+    color: #3498db;
+}

@@ -3,42 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion</title>
+    <title>Connexion - H</title>
+    <link rel="stylesheet" href="style/style-login.css">
+    <link rel="icon" href="img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <h1>Connexion</h1>
-    <form action="login.php" method="POST">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" name="username" id="username" required><br><br>
+    <div class="background-container"></div>
 
-        <label for="password">Mot de passe :</label>
-        <input type="password" name="password" id="password" required><br><br>
-
-        <button type="submit">Se connecter</button>
-    </form>
-
-    <?php
-    // Connexion à la base de données
-    $pdo = new PDO("mysql:host=localhost;dbname=reseau_social;charset=utf8", "root", "");
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
-        $stmt->execute(['username' => $username]);
-        $user = $stmt->fetch();
-
-        if ($user && password_verify($password, $user['password'])) {
-            // Connexion réussie, tu peux rediriger vers une page d'accueil ou de profil
-            echo "Connexion réussie ! Bienvenue, " . htmlspecialchars($user['username']) . ".";
-        } else {
-            echo "Nom d'utilisateur ou mot de passe incorrect.";
-        }
-    }
-    session_start();
-    $_SESSION['user_id'] = $user['id'];
-    $_SESSION['username'] = $user['username'];
-    ?>
+    <div class="auth-container">
+        <header style="text-align: center; margin-bottom: 30px;">
+            <img src="img/logo.png" alt="logo H" style="width: 100px; height: auto;">
+        </header>
+        <h1>Se connecter</h1>
+        <form action="login.php" method="POST">
+            <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+            <input type="password" name="password" placeholder="Mot de passe" required>
+            <button type="submit">Se connecter</button>
+        </form>
+        <p>Pas encore de compte ? <a href="register.php">S'inscrire</a></p>
+        <?php if (isset($error_message)): ?>
+            <p style="color: red;"><?php echo $error_message; ?></p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>
+
+
+<?php
+session_start(); // Assurez-vous que la session est démarrée
+
+$pdo = new PDO("mysql:host=localhost;dbname=reseau_social;charset=utf8", "root", "");
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Rechercher l'utilisateur dans la base de données
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username");
+    $stmt->execute(['username' => $username]);
+    $user = $stmt->fetch();
+
+    // Vérifier si l'utilisateur existe et si le mot de passe est correct
+    if ($user && password_verify($password, $user['password'])) {
+        // Utilisateur authentifié, démarrer la session
+        $_SESSION['user_id'] = $user['id']; // Enregistrer l'ID de l'utilisateur dans la session
+        $_SESSION['username'] = $user['username']; // Enregistrer le nom d'utilisateur
+        header('Location: index.php'); // Rediriger vers la page principale
+        exit;
+    } else {
+        $error_message = "Nom d'utilisateur ou mot de passe incorrect.";
+    }
+}
+?>
+
