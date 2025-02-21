@@ -7,6 +7,20 @@ body {
     padding: 0;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligner à gauche */
+    padding: 10px;
+}
+
+.logo img {
+    max-width: 100px; /* Ajuste la taille selon tes besoins */
+    height: auto;
+    display: block;
+}
+
+
 .profile-pic {
     width: 40px;
     height: 40px;
@@ -155,7 +169,6 @@ textarea:focus {
     padding: 20px;
     border-radius: 8px;
 }
-
 
 /* Responsive Design */
 @media (max-width: 768px) {
