@@ -30,7 +30,7 @@
 
 
 <?php
-session_start(); // Assurez-vous que la session est démarrée
+session_start();
 
 $pdo = new PDO("mysql:host=localhost;dbname=reseau_social;charset=utf8", "root", "");
 
@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Vérifier si l'utilisateur existe et si le mot de passe est correct
     if ($user && password_verify($password, $user['password'])) {
         // Utilisateur authentifié, démarrer la session
-        $_SESSION['user_id'] = $user['id']; // Enregistrer l'ID de l'utilisateur dans la session
-        $_SESSION['username'] = $user['username']; // Enregistrer le nom d'utilisateur
-        header('Location: index.php'); // Rediriger vers la page principale
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['username'] = $user['username'];
+        header('Location: index.php');
         exit;
     } else {
         $error_message = "Nom d'utilisateur ou mot de passe incorrect.";

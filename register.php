@@ -49,7 +49,7 @@
 
 
 <?php
-session_start(); // Assurez-vous que la session est démarrée
+session_start();
 
 $pdo = new PDO("mysql:host=localhost;dbname=reseau_social;charset=utf8", "root", "");
 

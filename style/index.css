@@ -1,43 +1,43 @@
-/* index.css */
+/* Général */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f8fa;
+    color: #333;
     margin: 0;
     padding: 0;
 }
 
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
 .container {
     display: grid;
-    grid-template-columns: 250px 1fr 300px; /* Sidebar gauche, contenu principal, sidebar droit */
+    grid-template-columns: 250px 1fr 300px; /* 3 colonnes : Sidebar gauche, Main content, Sidebar droite */
     gap: 20px;
     padding: 20px;
 }
 
-.sidebar {
+.sidebar, .right-sidebar {
     background-color: #fff;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.sidebar .logo img {
-    width: 50px;
-    height: auto;
-    margin-bottom: 20px;
-}
-
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.sidebar ul li {
-    margin: 10px 0;
-}
-
-.sidebar ul li a {
-    text-decoration: none;
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 18px;
     color: #3498db;
-    font-size: 16px;
+    transition: color 0.3s;
+}
+
+.sidebar ul li a:hover i {
+    color: #2980b9;
 }
 
 .main-content {
@@ -45,66 +45,109 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    grid-column: 2; /* Fait en sorte que main-content prenne la 2e colonne (celle du milieu) */
 }
 
-.main-content .post-form {
-    margin-bottom: 20px;
+h3 {
+    color: #1da1f2;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
 }
 
-.main-content .post-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    font-size: 16px;
+.sidebar {
+    position: sticky;
+    top: 0;
 }
 
-.main-content .feed {
-    margin-top: 20px;
-}
-
-.main-content .post {
+.post {
     background-color: #fff;
     padding: 15px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.main-content .post-header {
+.post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
     display: flex;
     align-items: center;
-}
-
-.main-content .post-header img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.main-content .post-header .username {
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.main-content .post-body {
-    margin-top: 10px;
-}
-
-.main-content .post-footer {
-    margin-top: 15px;
-    display: flex;
     justify-content: space-between;
 }
 
-.main-content .post-footer button {
-    background: none;
+.post-header .username {
+    font-weight: 700;
+    font-size: 18px;
+    color: #1da1f2;
+}
+
+.post-header .post-date {
+    font-size: 14px;
+    color: #657786;
+}
+
+button {
+    background-color: #1da1f2;
+    color: white;
     border: none;
-    color: #3498db;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #1991db;
+}
+
+.post-footer button {
+    background: none;
+    color: #1da1f2;
     font-size: 14px;
     cursor: pointer;
+    transition: color 0.3s;
+}
+
+.post-footer button:hover {
+    color: #1991db;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+textarea:focus {
+    border-color: #1da1f2;
+    outline: none;
+}
+
+.replies {
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.reply {
+    padding-left: 20px;
+    border-left: 2px solid #1da1f2;
+    margin-bottom: 10px;
+}
+
+.reply .username {
+    font-weight: bold;
+    color: #1da1f2;
 }
 
 .right-sidebar {
@@ -113,21 +156,10 @@ body {
     border-radius: 8px;
 }
 
-.right-sidebar h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
 
-.right-sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.right-sidebar ul li {
-    margin: 10px 0;
-}
-
-.right-sidebar ul li a {
-    text-decoration: none;
-    color: #3498db;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* Une colonne sur mobile */
+    }
 }
